@@ -1,0 +1,7 @@
+path: ..
+train: train
+val: val
+names:
+  0: healthy
+  1: angular_leaf_spot
+  2: bean_rust

@@ -1,0 +1,98 @@
+## Environment & secrets
+Secrets/
+.env
+.env.*
+!.env.example
+.envrc
+
+## Python cache/artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+## Build & packaging
+.Python
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-wheel-metadata/
+
+## Virtual environments
+venv/
+.venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+## Testing & coverage
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+*.py,cover
+htmlcov/
+.hypothesis/
+
+## Type checking / lint
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.pytype/
+
+## Logs & databases
+*.log
+*.sqlite3
+*.db
+celerybeat-schedule
+celerybeat.pid
+
+## Framework specific
+local_settings.py
+instance/
+.webassets-cache
+media/
+staticfiles/
+yolo/runs/
+
+## IDE & editor
+.idea/
+.vscode/
+.ropeproject
+.spyproject
+.spyderproject
+.vs/
+*.code-workspace
+
+## OS / misc
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.swp
+*.swo
+*.bak
+
+## Node / frontend artifacts
+node_modules/
+.parcel-cache/
+.sass-cache/
+*.tsbuildinfo

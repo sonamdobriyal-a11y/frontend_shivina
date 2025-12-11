@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bean Leaf Health Monitor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-900 min-h-screen">
+    <header class="bg-indigo-600 text-white py-6 px-6 md:px-10 shadow">
+        <h1 class="text-3xl font-semibold">Bean Leaf Health Monitor</h1>
+        <p class="text-indigo-100 mt-2">Track YOLO11 training progress and flag unhealthy plants in real time.</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 md:px-6 py-6 space-y-6">
+        <section class="grid gap-4 md:grid-cols-2">
+            <div class="bg-white rounded-2xl shadow p-6">
+                <h2 class="text-xl font-semibold text-slate-800">Rover Motor Control</h2>
+                <p id="motor-status" class="mt-2 text-slate-600">Awaiting command.</p>
+                <p class="text-sm text-slate-500 mt-1">Each action overwrites the current direction in Firebase Realtime Database.</p>
+                <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+                    <button data-motor-action="forward" class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition">
+                        Forward
+                    </button>
+                    <button data-motor-action="reverse" class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-fuchsia-500 text-white hover:bg-fuchsia-600 transition">
+                        Reverse
+                    </button>
+                    <button data-motor-action="left" class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-amber-500 text-white hover:bg-amber-600 transition">
+                        Left
+                    </button>
+                    <button data-motor-action="right" class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-emerald-500 text-white hover:bg-emerald-600 transition">
+                        Right
+                    </button>
+                    <button data-motor-action="stop" class="col-span-2 sm:col-span-3 lg:col-span-1 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-rose-600 text-white hover:bg-rose-700 transition">
+                        STOP
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow p-6 flex flex-col gap-3">
+                <h2 class="text-xl font-semibold text-slate-800">Latest Unhealthy Detection</h2>
+                <p id="latest-detection" class="text-slate-600">Waiting for detections...</p>
+                <p class="text-sm text-slate-500">Detections are generated on the Raspberry Pi service and saved to Cloudinary + Firestore.</p>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl shadow p-6">
+            <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between mb-4">
+                <div>
+                    <h2 class="text-xl font-semibold text-slate-800">Recent Unhealthy Detections</h2>
+                    <span class="text-sm text-slate-500 mt-1 block">Showing the most recent records from Firestore (newest first).</span>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button id="refresh-detections" class="inline-flex items-center px-4 py-2 rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 transition">
+                        Refresh
+                    </button>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-slate-200 text-left text-sm">
+                    <thead class="bg-slate-100 text-slate-600 uppercase tracking-wide text-xs">
+                        <tr>
+                            <th class="px-4 py-3 font-semibold">Class</th>
+                            <th class="px-4 py-3 font-semibold">Confidence</th>
+                            <th class="px-4 py-3 font-semibold">Captured At (UTC)</th>
+                            <th class="px-4 py-3 font-semibold">Preview</th>
+                            <th class="px-4 py-3 font-semibold">Cloudinary ID</th>
+                            <th class="px-4 py-3 font-semibold">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detections-body" class="divide-y divide-slate-100 text-slate-700">
+                        <tr>
+                            <td colspan="6" class="px-4 py-6 text-center text-slate-400">No detections yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
